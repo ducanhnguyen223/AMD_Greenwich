@@ -12,6 +12,13 @@ options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")
 
 var app = builder.Build();
 
+// SQLite
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    db.Database.Migrate(); 
+}
+
 
 // Middleware
 if (!app.Environment.IsDevelopment())
