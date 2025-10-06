@@ -1,0 +1,35 @@
+﻿@model IEnumerable<StudentManagement.Models.Student>
+
+@{
+    ViewData["Title"] = "Students";
+}
+
+<h2>Students</h2>
+
+<a href="/Student/Create">➕ Add Student</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>DOB</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.FullName</td>
+                <td>@student.Email</td>
+                <td>@student.DateOfBirth.ToShortDateString()</td>
+                <td>
+                    <a href="/Student/Details/@student.Id">View</a> |
+                    <a href="/Student/Edit/@student.Id">Edit</a> |
+                    <a href="/Student/Delete/@student.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
